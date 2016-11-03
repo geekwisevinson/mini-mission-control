@@ -58,8 +58,8 @@ module.exports = Bookshelf.Model.extend({
 
         return model.clear()
           .fetch()
-          .then((refreshedModel) => parseExistingModel(this, refreshedModel))
-          .catch((err) => {
+          .then(refreshedModel => parseExistingModel(this, refreshedModel))
+          .catch(err => {
             console.error('Post-save fetch error');
             throw err;
           });
