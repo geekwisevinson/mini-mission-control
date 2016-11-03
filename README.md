@@ -70,3 +70,34 @@ To visualize our database, we can head on over to [eggerapps](https://eggerapps.
 
 #### Conclusion
 We now have our database set up. From here, we can run `npm start`, and our server will be running. We will have docs soon on how to interact with our database, using Paw (sending requests, and receiving responses); as well as which endpoints we can talk to.
+
+#### Errors
+If, for whatever reason, you're getting the error
+
+```
+error: select "users".* from "users" where "users"."email" = $1 limit $2 - relation "users" does not exist
+```
+
+when you send a request to `/api/v1/users`—or some other similar-looking error—it means you probably ran a migration before you had data in the file, so Postgres thought it already ran and stored that in `knex_migrations`. This can be fixed by running `npm run knex migrate:rollback`, and then `npm run knex migrate:latest`.
+
+If this still doesn't solve the problems, kill the database server where it's currently being used, then hop back into `psql`, and run the following:
+
+```
+DROP DATABASE mission_control;
+```
+
+DON'T FORGET THE SEMICOLON AT THE END.
+
+From there, recreate the database with
+
+```
+CREATE DATABASE mission_control;
+```
+
+and then follow through with:
+
+```
+npm run knex migrate:latest
+```
+
+Problem should be solved and the users table should now be on our database.
