@@ -18,7 +18,7 @@
     "bcrypt": "~0.8.7",
     "bluebird": "~3.4.1",
     "bookshelf": "~0.10.0",
-    "bookshelf-json-columns": "~1.2.1",
+    "bookshelf-json-columns": "2.0.0",
     "boom": "~3.2.2",
     "dotenv": "~2.0.0",
     "good": "~7.0.1",

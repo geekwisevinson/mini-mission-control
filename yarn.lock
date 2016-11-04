@@ -249,13 +249,6 @@ babel-runtime@^6.6.1:
     core-js "^2.4.0"
     regenerator-runtime "^0.9.5"
 
-babel-runtime@6.11.6:
-  version "6.11.6"
-  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.11.6.tgz#6db707fef2d49c49bfa3cb64efdb436b518b8222"
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.9.5"
-
 balanced-match@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
@@ -323,11 +316,9 @@ bluebird@^3.3.4, bluebird@^3.4.1, bluebird@^3.4.3, bluebird@~3.4.1:
   version "3.4.6"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.6.tgz#01da8d821d87813d158967e743d5fe6c62cf8c0f"
 
-bookshelf-json-columns@~1.2.1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/bookshelf-json-columns/-/bookshelf-json-columns-1.2.2.tgz#d9409312a421bd900fea7eacacb6c90a3e6919bb"
-  dependencies:
-    babel-runtime "6.11.6"
+bookshelf-json-columns@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/bookshelf-json-columns/-/bookshelf-json-columns-2.0.0.tgz#f23a0432a107ada6bdd32054623c73a3bbd5ab7e"
 
 bookshelf@~0.10.0:
   version "0.10.2"
