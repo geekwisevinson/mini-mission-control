@@ -49,23 +49,23 @@ module.exports = Bookshelf.Model.extend({
   },
 
   save(...args) {
-      this.id = decodeKey(this.id);
-      return Bookshelf.Model.prototype.save.apply(this, args)
-        .then((model) => {
-          if (!model) {
-            return parseExistingModel(this, model);
-          }
+    this.id = decodeKey(this.id);
+    return Bookshelf.Model.prototype.save.apply(this, args)
+      .then((model) => {
+        if (!model) {
+          return parseExistingModel(this, model);
+        }
 
-          const savedModel = model;
-          savedModel.attributes = { id: encodeKey(model.attributes.id) };
+        const savedModel = model;
+        savedModel.attributes = { id: encodeKey(model.attributes.id) };
 
-          return model.fetch()
-            .then(refreshedModel => parseExistingModel(this, refreshedModel))
-            .catch(err => {
-              console.error('Post-save fetch error');
-              throw err;
-            });
-        });
+        return model.fetch()
+          .then(refreshedModel => parseExistingModel(this, refreshedModel))
+          .catch(err => {
+            console.error('Post-save fetch error');
+            throw err;
+          });
+      });
     },
 
   destroy(...args) {
