@@ -23,41 +23,29 @@ module.exports = Bookshelf.Model.extend({
   // convert snake_case to camelCase
   parse: attrs => {
     const camelizedObject = mapKeys(string.camelize, attrs);
-
     const idKeys = getIdKeys(camelizedObject);
-    if (hasKeys(idKeys)) {
-      return R.merge(
-        camelizedObject,
-        transformHashedKeys(camelizedObject, idKeys, encodeKey)
-      );
-    }
+
     return camelizedObject;
   },
 
   // convert camelCase to snake_case
   format: attrs => {
     const underscoredObject = mapKeys(string.underscored, attrs);
-
     const idKeys = getIdKeys(underscoredObject);
-    if (hasKeys(idKeys)) {
-      return R.merge(
-        underscoredObject,
-        transformHashedKeys(underscoredObject, idKeys, decodeKey)
-      );
-    }
+
     return underscoredObject;
   },
 
   save(...args) {
     this.id = decodeKey(this.id);
     return Bookshelf.Model.prototype.save.apply(this, args)
-      .then((model) => {
+      .then(model => {
         if (!model) {
           return parseExistingModel(this, model);
         }
 
         const savedModel = model;
-        savedModel.attributes = { id: encodeKey(model.attributes.id) };
+        savedModel.attributes = { id: model.attributes.id };
 
         return model.fetch()
           .then(refreshedModel => parseExistingModel(this, refreshedModel))
