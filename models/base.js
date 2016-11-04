@@ -56,6 +56,10 @@ module.exports = Bookshelf.Model.extend({
           return parseExistingModel(this, model);
         }
 
+        model.attributes = {
+          id: decodeKey(model.attributes.id)
+        };
+
         return model.clear()
           .fetch()
           .then(refreshedModel => parseExistingModel(this, refreshedModel))
