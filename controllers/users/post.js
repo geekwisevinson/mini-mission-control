@@ -1,6 +1,5 @@
 const Service = appRequire('lib/users/post/service');
 const Validator = appRequire('lib/users/post/validator');
-
 const ResponseHelpers = appRequire('helpers/responses');
 const UserAlreadyExistsError = appRequire('lib/errors/user_already_exists_error');
 
