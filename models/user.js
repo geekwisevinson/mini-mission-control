@@ -22,4 +22,13 @@ module.exports = Bookshelf.model('User', BaseModel.extend({
       resolve(hash);
     });
   }),
+  roles() {
+    return this.belongsToMany('Role');
+  },
+  isAdmin() {
+    return this.roles()
+      .query('where', 'roles.name', 'admin')
+      .fetch()
+      .then(roles => roles.size() > 0);
+  },
 }));
