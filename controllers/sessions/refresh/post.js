@@ -1,12 +1,11 @@
 const Service = appRequire('lib/authentication/service');
 const Validator = appRequire('lib/sessions/post/refresh/validator');
-
 const ResponseHelpers = appRequire('helpers/responses');
 
 const post = (request, reply) => {
   const token = request.payload.token;
   Service.refreshToken(token)
-    .then((refreshedToken) => {
+    .then(refreshedToken => {
       if (!refreshedToken) {
         return reply.unauthorized('Invalid JWT provided, please reauthenticate.');
       }
@@ -15,7 +14,7 @@ const post = (request, reply) => {
         token: refreshedToken,
       });
     })
-    .catch((err) => ResponseHelpers.logErrorAndRespond(err, reply));
+    .catch(err => ResponseHelpers.logErrorAndRespond(err, reply));
 };
 
 module.exports = {
